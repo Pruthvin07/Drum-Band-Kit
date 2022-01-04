@@ -5,6 +5,7 @@ for(i=0;i<document.querySelectorAll(".drum").length;i++){
 document.querySelectorAll("button")[i].addEventListener("click",function() {
     var buttonINNERHTML = this.innerHTML;
     makeSound(buttonINNERHTML);
+    btnAnimation(buttonINNERHTML);
 });
 
 }
@@ -12,6 +13,7 @@ document.querySelectorAll("button")[i].addEventListener("click",function() {
 document.addEventListener("keydown",function(Event){
 
     makeSound(Event.key);
+    btnAnimation(Event.key)
 
 });
 
@@ -59,4 +61,13 @@ function makeSound(key){
         default:console.log(buttonINNERHTML);
            
     }
+}
+
+function btnAnimation(currentKey){
+    var active = document.querySelector("."+currentKey);
+    active.classList.add("pressed");
+
+    setTimeout(function(){
+        active.classList.remove("pressed");
+    },100);
 }
